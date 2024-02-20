@@ -1,16 +1,24 @@
 package com.example.gameapi.Model;
 
-import java.util.concurrent.atomic.AtomicInteger;
+import jakarta.persistence.*;
 
+//import java.util.concurrent.atomic.AtomicInteger;
+
+import static jakarta.persistence.GenerationType.IDENTITY;
+
+@Entity
+@Table
 public class Game {
-    private static final AtomicInteger idGenerator = new AtomicInteger(0);
-    int id;
-    String name;
-    Category category;
+    //private static final AtomicInteger idGenerator = new AtomicInteger(0);
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
+    private int id;
+    @Column(nullable = false)
+    private String name;
+    @Column(nullable = false)
+    private Category category;
 
-    public Game() {
-        this.id = idGenerator.getAndIncrement();
-    }
+    //public Game() { this.id = idGenerator.getAndIncrement(); }
 
     public int getId() {
         return id;
